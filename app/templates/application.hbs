@@ -1,3 +1,13 @@
-<h2 id="title">Welcome to Ember.js</h2>
-
-{{outlet}}
+<header class="nav">
+	<div class="container">
+		Anzu - bleeding edge CAA radio
+	</div>
+</header>
+<section id="np-container">
+	{{now-playing store=store}}
+</section>
+<section class="content">
+	<div class="container">
+		{{outlet}}
+	</div>
+</section>

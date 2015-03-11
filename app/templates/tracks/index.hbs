@@ -1,0 +1,6 @@
+{{#each track in model}}
+	<div>
+		{{track.title}}
+		<video controls {{bind-attr src=track.source}}></video>`
+	</div>
+{{/each}}

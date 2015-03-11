@@ -1,0 +1,12 @@
+<section id="now-playing">
+	<div class="container np-velocity">
+		<div class="np-card">
+			<img {{bind-attr src=np.albumArt}} class="album-art">
+			<div class="np-details">
+				<h3>{{np.title}}</h3>
+				<h4>{{np.artist}}</h4>
+			</div>
+		</div>
+		<span {{action "next"}}>Next</span>
+	</div>
+</section>

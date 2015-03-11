@@ -3,7 +3,9 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp();
-
+app.import("app/styles/normalize.css")
+app.import("vendor/velocity/velocity.min.js")
+app.import("vendor/velocity/velocity.ui.min.js")
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
