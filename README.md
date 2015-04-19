@@ -1,7 +1,6 @@
 # Anzu
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+If you can figure out how to run the monstrosity that is ember cli then you're pretty much set. Godspeed.
 
 ## Prerequisites
 
