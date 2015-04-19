@@ -1,32 +1,50 @@
+@mixin flexbox{
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+}
 body{
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
+	/*background: url('/assets/img/miku.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;*/
 }
 h1, h2, h3, h4, h5, h6{
 	margin: 0 !important;
 	font-weight: 300;
 }
 #np-container{
-	background: url('/assets/img/miku.jpg');
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	height: 100vh;
-	min-height: 600px;
 	margin-top: -62px;
 	padding-top: 62px;
-	position: relative;
+}
+.tracks-container{
+	@include flexbox;
+	justify-content: center;
+	flex-direction: row;
+	margin-top: 10px;
 }
 #now-playing{
-	display: flex;
-	margin-top: 20vh;
+	@include flexbox;
+	margin-top: 10px;
 }
 .np-card{
-	background: rgba(255,255,255,0.6);
+	background: rgba(84,201,255,0.6);
 	display: flex;
 	flex-direction: row;
 	padding: 20px;
 	width: 600px;
+}
+.np-progress-bar{
+	position: relative;
+	height: 50px;
+	border: 1px solid red;
+	.progress{
+		display: block;
+		height: 100%;
+		background: black;
+	}
 }
 .np-details{
 	padding: 10px;
@@ -51,4 +69,17 @@ h1, h2, h3, h4, h5, h6{
 	line-height: 61px;
 	position: relative;
 	z-index: 10;
+}
+.album-art{
+	height: 200px;
+	width: 200px;
+}
+.track-container{
+	margin: 5px;
+}
+.actionable{
+	cursor: pointer;
+}
+.playing{
+	text-decoration: underline;
 }

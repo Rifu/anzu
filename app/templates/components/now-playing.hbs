@@ -6,7 +6,18 @@
 				<h3>{{np.title}}</h3>
 				<h4>{{np.artist}}</h4>
 			</div>
+			<div class="np-controls">
+				<div class="actionable play" {{action "play"}}>Play/Pause</div>
+				<div class="np-progress-bar">
+					<span class="progress" {{bind-attr style=progressBarHelper}}></span>
+				</div>
+			</div>
 		</div>
-		<span {{action "next"}}>Next</span>
 	</div>
+</section>
+{{currentTime}} / {{duration}}
+<section id="now-playing-playlist">
+	{{#each track in playlist}}
+		{{playlist-item track=track index=_view.contentIndex currentTrack=currentTrack}}
+	{{/each}}
 </section>

@@ -4,10 +4,8 @@
 	</div>
 </header>
 <section id="np-container">
-	{{now-playing store=store}}
+	{{now-playing store=store playlist=playlist}}
 </section>
-<section class="content">
-	<div class="container">
-		{{outlet}}
-	</div>
+<section id="tracks-container-wrapper">
+	{{tracks-container store=store}}
 </section>
