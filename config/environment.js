@@ -19,11 +19,11 @@ module.exports = function(environment) {
     },
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self'",
-      'font-src': "'self' 'unsafe-inline' http://fonts.googleapis.com 'unsafe-inline' http://fonts.gstatic.com",
+      'script-src': "'self' 'unsafe-inline' https://code.createjs.com/soundjs-0.6.0.min.js",
+      'font-src': "'self' 'unsafe-inline' http://fonts.googleapis.com 'unsafe-inline' http://fonts.gstatic.com 'unsafe-inline' http://maxcdn.bootstrapcdn.com", 
       'connect-src': "'self'",
       'img-src': "'self'",
-      'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com",
+      'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com 'unsafe-inline' http://maxcdn.bootstrapcdn.com",
       'media-src': "'self'"
     }
   };

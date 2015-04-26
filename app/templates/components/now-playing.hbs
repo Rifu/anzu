@@ -3,13 +3,19 @@
 		<div class="np-card">
 			<img {{bind-attr src=np.albumArt}} class="album-art">
 			<div class="np-details">
-				<h3>{{np.title}}</h3>
-				<h4>{{np.artist}}</h4>
-			</div>
-			<div class="np-controls">
-				<div class="actionable play" {{action "play"}}>Play/Pause</div>
-				<div class="np-progress-bar">
-					<span class="progress" {{bind-attr style=progressBarHelper}}></span>
+				<div>
+					<h3>{{np.title}}</h3>
+					<h4>{{np.artist}}</h4>
+				</div>
+				<div {{bind-attr class=":np-controls isLoaded::hidden"}}>
+					<i class="actionable fa fa-play" {{action "play"}}></i>
+					<i class="actionable fa fa-pause" {{action "pause"}}></i>
+					<div class="np-progress-bar">
+						<span class="progress" {{bind-attr style=progressBarHelper}}></span>
+						<div {{bind-attr class=":progress-animation isPlaying::idle"}}></div>
+						<span class="progress-bar" {{bind-attr style=progressBarHelper}}></span>
+						<span class="progress-time">{{formattedTime}} / {{formattedDuration}}</span>
+					</div>
 				</div>
 			</div>
 		</div>

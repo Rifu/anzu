@@ -29,6 +29,13 @@ Track.reopenClass({
       artist: 'tamame',
       title: "あの森で待ってる(tamame's the Promise Kiss Remix).mp3",
       source: "/assets/music/あの森で待ってる(tamame's the Promise Kiss Remix).mp3"
+    },
+    {
+      id: 4,
+      albumArt: '/assets/img/album_art/stones.jpg',
+      artist: 'tamame',
+      title: "STONES.mp3",
+      source: "/assets/music/01. STONES.mp3"
     }
   ]
 });
