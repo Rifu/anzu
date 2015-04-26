@@ -1,9 +1,9 @@
 <header class="nav">
 	<div class="container">
-		Anzu - bleeding edge CAA radio
+		{{#link-to "root"}}<div class="logo">Anzu - bleeding edge CAA radio</div>{{/link-to}}
 	</div>
 </header>
-<section id="np-container">
+<section id="np-container" {{bind-attr class="hasPlaylist:now-playing"}}>
 	{{now-playing store=store playlist=playlist}}
 </section>
 <section id="tracks-container-wrapper">

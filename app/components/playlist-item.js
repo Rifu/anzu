@@ -1,6 +1,7 @@
 import Ember from "ember";
 
 var PlaylistItemComponent = Ember.Component.extend({
+	classNames: ["playlist-item-container"],
 	skipToTrack: "skipToTrack",
 	playing: function(){
 		return this.get("index") == this.get("currentTrack")

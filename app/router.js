@@ -12,6 +12,7 @@ Router.map(function() {
 	this.resource('track', { path: '/track/:track_id' }, function(){
 
 	});
+	this.route('root', { path: '/'}, function(){})
 });
 
 export default Router;

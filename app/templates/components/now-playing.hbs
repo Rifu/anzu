@@ -3,7 +3,7 @@
 		<div class="np-card">
 			<img {{bind-attr src=np.albumArt}} class="album-art">
 			<div class="np-details">
-				<div>
+				<div class="np-song">
 					<h3>{{np.title}}</h3>
 					<h4>{{np.artist}}</h4>
 				</div>
@@ -21,9 +21,10 @@
 		</div>
 	</div>
 </section>
-{{currentTime}} / {{duration}}
 <section id="now-playing-playlist">
-	{{#each track in playlist}}
-		{{playlist-item track=track index=_view.contentIndex currentTrack=currentTrack}}
-	{{/each}}
+	<div {{bind-attr class=":playlist-container playlist.length::hidden"}}>
+		{{#each track in playlist}}
+			{{playlist-item track=track index=_view.contentIndex currentTrack=currentTrack}}
+		{{/each}}
+	</div>
 </section>
