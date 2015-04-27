@@ -2,6 +2,8 @@
 
 If you can figure out how to run the monstrosity that is ember cli then you're pretty much set. Godspeed.
 
+Compiled assets here: https://github.com/Rifu/candy-island
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
