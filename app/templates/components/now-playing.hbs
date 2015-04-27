@@ -1,3 +1,4 @@
+<audio id="np-audio-container" autoplay="autoplay"></audio>
 <section id="now-playing">
 	<div class="container np-velocity">
 		<div class="np-card">
@@ -16,6 +17,10 @@
 						<span class="progress-bar" {{bind-attr style=progressBarHelper}}></span>
 						<span class="progress-time">{{formattedTime}} / {{formattedDuration}}</span>
 					</div>
+				</div>
+				<div {{bind-attr class=":np-now-loading isLoaded:hidden"}}>
+					<div {{bind-attr class="loading::hidden"}}>Now Loading</div>
+					<div {{bind-attr class=":progress-animation :idle"}}></div>
 				</div>
 			</div>
 		</div>

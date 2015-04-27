@@ -26,7 +26,19 @@ var NowPlayingComponent = Ember.Component.extend({
 		this.createPlayer()
 	},
 	createPlayer: function(){
-		createjs.Sound.on("fileload", this.playAudio, this);
+		var self = this
+		$('#np-audio-container').on('ended', function(){
+			self.advancePlaylist()
+		})
+		$('#np-audio-container').on('durationchange', function(){
+			self.setDuration()
+		})
+		this.set("soundContainer", $("#np-audio-container")[0])
+
+	},
+	setDuration: function(){
+		this.set("duration", this.get("soundContainer").duration)
+		this.set("isLoaded", true)
 	},
 	formattedTime: function(){
 		return this.msToTime(this.get("currentTime"))
@@ -60,22 +72,20 @@ var NowPlayingComponent = Ember.Component.extend({
 		var track = this.get("np")
 		var source = track.get("source")
 		var self = this
-		var sound = createjs.Sound.registerSound(source, "nowplaying", 1)
-		this.set("currentTime", 0)
-		this.set("duration", sound.duration)
+		$("#np-audio-container").attr("src", source)
 		
-		//createjs.Sound.play("nowplaying")
-		// this.set("audioContainer", sound)
-		// 
+		this.set("loading", true)
+		this.set("isLoaded", false)
+		this.set("currentTime", 0)
+		this.playAudio()
 	},
 	playAudio: function(){
-		var sound = createjs.Sound.play("nowplaying")
-		sound.on("complete", this.advancePlaylist, this)
-		this.set("soundContainer", sound)
-		this.set("duration", sound.duration)
+		var audio = $("#np-audio-container")
+		this.set("duration", this.get("soundContainer").duration)
+		this.set("loading", false)
+		this.get("soundContainer").play()
 		this.startSeek()
 		this.set("isPlaying", true)
-		this.set("isLoaded", true)
 	},
 	pauseAudio: function(){
 		this.set("isPlaying", false)
@@ -84,15 +94,15 @@ var NowPlayingComponent = Ember.Component.extend({
 	},
 	resumeAudio: function(){
 		this.set("isPlaying", true)
-		this.get("soundContainer").resume()
+		this.get("soundContainer").play()
 		this.startSeek()
 	},
 	stopAudio: function(){
+		this.get("soundContainer").pause()
 		this.set("nowplaying", false)
 		this.set("isLoaded", false)
 		this.set("currentTime", 0)
 		this.set("duration", 10000000000)
-		createjs.Sound.removeSound("nowplaying")
 	},
 	advancePlaylist: function(){
 		if(this.get("autoplay")){
@@ -113,7 +123,7 @@ var NowPlayingComponent = Ember.Component.extend({
 	},
 	pauseSeek: function(){
 		clearInterval(this.get("timerHelper"))
-		var pos = this.get("soundContainer").position
+		var pos = this.get("soundContainer").currentTime
 		this.set("currentTime", pos)
 	},
 	startSeek: function(){
@@ -121,15 +131,15 @@ var NowPlayingComponent = Ember.Component.extend({
 	},
 	seekHelper: function(){
 		if(this.get("isPlaying")){
-			console.log("whee")
 			clearInterval(this.get("timerHelper"))
 			var self = this
 			var t = setInterval(function(){
-				self.set("currentTime", self.get("soundContainer").position)
+				self.set("currentTime", self.get("soundContainer").currentTime)
 			}, 100)
 		}
 	},
 	msToTime: function(s) {
+		s = s * 1000
 	  var ms = s % 1000
 	  s = (s - ms) / 1000
 	  var secs = s % 60
@@ -148,6 +158,7 @@ var NowPlayingComponent = Ember.Component.extend({
 			//this.set("autoplay", false)
 			this.pauseAudio()
 			this.set("isLoaded", false)
+			this.set("loading", true)
 			var track = this.get("playlist").objectAt(trackNo)
 			this.set("np", track)
 			this.set("currentTrack", trackNo)
