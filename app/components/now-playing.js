@@ -102,6 +102,7 @@ var NowPlayingComponent = Ember.Component.extend({
     this.set("isLoaded", false)
     this.set("currentTime", 0)
     this.set("duration", 10000000000)
+    this.set("np", this.get("npDummy"))
   },
   advancePlaylist: function(){
     if(this.get("autoplay")){
@@ -112,9 +113,7 @@ var NowPlayingComponent = Ember.Component.extend({
         this.set("currentTrack", nextTrack)
         this.loadAudio()
       }else{
-        this.set("np", this.get("npDummy"))
-        this.set("isPlaying", false)
-        this.set("isLoaded", false)
+        this.stopAudio()
       }
     }else{
       this.set("autoplay", true)
@@ -151,27 +150,31 @@ var NowPlayingComponent = Ember.Component.extend({
     }
     return mins + ':' + secs
   },
+  skipToTrackHelper: function(trackNo){
+    this.pauseAudio()
+    this.set("isLoaded", false)
+    this.set("loading", true)
+    var track = this.get("playlist").objectAt(trackNo)
+    this.set("np", track)
+    this.set("currentTrack", trackNo)
+    Ember.run.later(this, function(){
+      this.loadAudio()
+    }, 1000)
+  },
 
   actions: {
     skipToTrack: function(trackNo){
-      //this.set("autoplay", false)
-      this.pauseAudio()
-      this.set("isLoaded", false)
-      this.set("loading", true)
-      var track = this.get("playlist").objectAt(trackNo)
-      this.set("np", track)
-      this.set("currentTrack", trackNo)
-      Ember.run.later(this, function(){
-        this.stopAudio()
-        this.loadAudio()
-      }, 1000)
-      //this.playAudio()
+      this.skipToTrackHelper(trackNo)
     },
     play: function(){
       this.resumeAudio()
     },
     pause: function(){
       this.pauseAudio()
+    },
+    clearPlaylist: function(){
+      this.stopAudio()
+      this.get("playlist").clear()
     }
   }
 });

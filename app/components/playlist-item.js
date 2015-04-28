@@ -10,10 +10,9 @@ var PlaylistItemComponent = Ember.Component.extend({
   actions:{
     skipToTrack: function(){
       if(!this.get("playing")){
-        console.log("nyanpasu")
         this.sendAction("skipToTrack", this.get("index"))
       }
-    }
+    },
   }
 });
 
